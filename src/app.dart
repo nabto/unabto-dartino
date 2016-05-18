@@ -7,7 +7,7 @@ import 'unabto.dart';
 main() {
   // Configure the uNabto server with a server ID and a pre-shared key obtained
   // from `developer.nabto.com`.
-  var unabto = new UNabto("[id]", "[key]");
+  var unabto = new UNabto("devicename.demo.nab.to", "35d0dca...");
 
   // Get version information.
   print("uNabto version ${unabto.version}.");
