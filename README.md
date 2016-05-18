@@ -24,8 +24,11 @@ unzip /tmp/dartino-sdk.zip
 ```
 ## Step 3: Build the C library
 ```shell
-cmake .
+mkdir build
+cd build
+cmake ..
 make
+cd ..
 ```
 
 # How to use the example application
