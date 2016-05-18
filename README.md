@@ -3,6 +3,8 @@ This library enables the usage of the uNabto framework from within [Dartino](htt
 
 *NOTE: Due to limitations of the Dartino FFI library, included in the latest Dartino SDK, this is currently only working on a local PC.*
 
+Please also refer to [this article](https://blog.nabto.com/2016/05/18/dartino-unabto/) on the [Nabto blog](http://blog.nabto.com/) for more information.
+
 # How to set it up
 ## Step 1: Clone the repository
 ```shell
