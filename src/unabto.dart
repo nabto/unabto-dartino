@@ -5,6 +5,7 @@ library unabto;
 import 'dart:dartino.ffi';
 import 'package:ffi/ffi.dart';
 import 'dart:convert';
+import 'dart:async';
 
 final ForeignLibrary _unabto =
     new ForeignLibrary.fromName(ForeignLibrary.bundleLibraryName('unabtolib'));
@@ -287,6 +288,12 @@ class UNabto {
   /// Preshared key for the secure connection.
   final String _presharedKey;
 
+  /// Duration of 2 msec used for the tick timer.
+  static const _twoMillis = const Duration(milliseconds:2);
+
+  /// The tick timer.
+  Timer _tickTimer = null;
+
   /// List of registered event handling functions.
   List _handlerFunctions = new List<ForeignDartFunction>();
 
@@ -327,7 +334,13 @@ class UNabto {
   /// Returns `0` on success or `-1` if something went wrong.
   int init() {
     if (_id == null || _presharedKey == null) return -1;
-    return _unabtoInit.icall$0();
+    int result = _unabtoInit.icall$0();
+    if (result == 0) {
+      // Allow uNabto to process any new incoming telegrams every 2 msec.
+      _tickTimer =
+          new Timer.periodic(_twoMillis, (Timer t) => _unabtoTick.vcall$0());
+    }
+    return result;
   }
 
   /// Wraps the consumer handler in a function the takes C struct pointers as
@@ -374,14 +387,9 @@ class UNabto {
     _handlerFunctions.add(newHandlerFunction);
   }
 
-  // Allow uNabto to process any new incoming telegrams. This must be called at
-  // least once every 10 msec.
-  void tick() {
-    _unabtoTick.vcall$0();
-  }
-
   // Closes the uNabto server, and frees all resources.
   void close() {
+    if (_tickTimer != null) _tickTimer.cancel();
     _unabtoClose.vcall$0();
     _handlerFunctions.forEach((f) => f.free());
   }

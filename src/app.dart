@@ -12,7 +12,7 @@ main() {
   // Get version information.
   print("uNabto version ${unabto.version}.");
 
-  // Attempt to init ans start the server.
+  // Attempt to init and start the server.
   int result = unabto.init();
   if (result != 0) {
     print("Init error: $result.");
@@ -22,17 +22,9 @@ main() {
     unabto.registerReceiver(1, onLightWrite);
     unabto.registerReceiver(2, onLightRead);
 
-    // Main app loop. We limit the execution to 1000 loops to illustrate
-    // how to properly clean-up resources.
-    for (var i = 0; i < 1000; i++) {
-      // Yield to the uNabto framework giving it a chance to process new
-      // messages.
-      unabto.tick();
-
-      // This is where the main app code would usually run.
-      // In this sample we just sleep a bit.
-      sleep(10);
-    }
+    // This is where the main app code would usually run.
+    // In this sample we just sleep a bit.
+    sleep(10000);
 
     // Clean-up: Deallocate foreign memory and functions.
     unabto.close();
