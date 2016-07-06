@@ -1,5 +1,5 @@
 # uNabto Dartino Library
-This library enables the usage of the uNabto framework from within [Dartino](https://dartino.org/). The accompanying example [app.dart](./src/app.dart) controls a virtual light using the framework. 
+This library enables the usage of the uNabto framework from within [Dartino](https://dartino.org/). The accompanying example [app.dart](./src/app.dart) controls a virtual light using the framework.
 
 *NOTE: Due to limitations of the Dartino FFI library, included in the latest Dartino SDK, this is currently only working on a local PC.*
 
@@ -14,12 +14,12 @@ cd unabto-dartino
 ## Step 2: Download and unzip the Dartino SDK
 Linux
 ```shell
-curl "https://storage.googleapis.com/dartino-archive/channels/dev/raw/0.4.0-dev.0.0/sdk/dartino-sdk-linux-x64-release.zip" -o "/tmp/dartino-sdk.zip"
+curl "https://storage.googleapis.com/dartino-archive/channels/dev/release/latest/sdk/dartino-sdk-linux-x64-release.zip" -o "/tmp/dartino-sdk.zip"
 unzip /tmp/dartino-sdk.zip
 ```
 Mac OS
 ```shell
-curl "https://storage.googleapis.com/dartino-archive/channels/dev/raw/0.4.0-dev.0.0/sdk/dartino-sdk-macos-x64-release.zip" -o "/tmp/dartino-sdk.zip"
+curl "https://storage.googleapis.com/dartino-archive/channels/dev/release/latest/sdk/dartino-sdk-macos-x64-release.zip" -o "/tmp/dartino-sdk.zip"
 unzip /tmp/dartino-sdk.zip
 ```
 ## Step 3: Build the C library
